@@ -35,6 +35,8 @@ const port = process.env.PORT || 3000;
 http.createServer((_req, res) => {
   res.writeHead(200);
   res.end('Bot is running');
+  // Log every few pings to avoid spam, or just log all for debugging
+  logger.debug('Health check ping received');
 }).listen(port, () => {
   logger.info(`Health check server listening on port ${port}`);
 });
