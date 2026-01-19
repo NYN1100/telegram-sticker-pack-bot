@@ -1,5 +1,5 @@
-# Use Node.js 18 (LTS)
-FROM node:18-slim
+# Use Node.js 20 (LTS)
+FROM node:20-slim
 
 # Install system dependencies required for canvas and sharp
 # libglib2.0-dev, libpango1.0-dev, etc. might be needed for @napi-rs/canvas on some distros

@@ -11,4 +11,4 @@ services:
       - key: HUGGINGFACE_API_KEY
         sync: false
       - key: NODE_VERSION
-        value: 18.16.0
+        value: 20.11.1
