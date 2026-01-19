@@ -2,10 +2,7 @@ import { Telegraf } from 'telegraf';
 import { logger } from '../utils/logger';
 import { Input } from 'telegraf';
 
-interface StickerFile {
-  path: string;
-  emoji: string;
-}
+
 
 export class StickerService {
   private bot: Telegraf;

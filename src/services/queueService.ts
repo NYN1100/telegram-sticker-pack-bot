@@ -20,15 +20,15 @@ export interface StickerJobResult {
 class InMemoryJob {
   id: number;
   data: StickerJobData;
-  private progressValue: number = 0;
+
 
   constructor(id: number, data: StickerJobData) {
     this.id = id;
     this.data = data;
   }
 
-  async progress(value: number): Promise<void> {
-    this.progressValue = value;
+  async progress(_value: number): Promise<void> {
+    // Progress tracking disabled for in-memory job
   }
 }
 
