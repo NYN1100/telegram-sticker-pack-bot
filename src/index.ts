@@ -29,6 +29,16 @@ if (!fs.existsSync(tempDir)) {
   fs.mkdirSync(tempDir, { recursive: true });
 }
 
+// Health check server for Render/Railway
+import http from 'http';
+const port = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200);
+  res.end('Bot is running');
+}).listen(port, () => {
+  logger.info(`Health check server listening on port ${port}`);
+});
+
 /**
  * Start command handler
  */
