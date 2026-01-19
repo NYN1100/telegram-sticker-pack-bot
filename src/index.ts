@@ -60,7 +60,7 @@ Har bir to'plam quyidagi matnli 10 ta stikerni o'z ichiga oladi:
 • Yo'q
 • Kechirasiz
 • Uylayapmanda kemay qolyaptida
-• Keyin qimirlaganingni otaman
+• Qimirlaganingni otaman
 
 Boshlash uchun shunchaki rasm yuboring! 📸
   `.trim();
