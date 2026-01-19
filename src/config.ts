@@ -25,7 +25,7 @@ export const config = {
     "Yo'q",
     'Kechirasiz',
     'Uylayapmanda kemay qolyaptida😂',
-    'Keyin qimirlaganingni otamandiyam'
+    'Keyin qimirlaganingni otaman'
   ],
   
   // Image Generation Settings
