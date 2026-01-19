@@ -1,0 +1,42 @@
+{
+  "name": "telegram-sticker-bot",
+  "version": "1.0.0",
+  "description": "Telegram bot that generates AI-powered sticker packs with Uzbek greetings",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "lint": "eslint src --ext .ts"
+  },
+  "keywords": [
+    "telegram",
+    "bot",
+    "sticker",
+    "ai",
+    "huggingface"
+  ],
+  "author": "Yusuf Ne'matullayev",
+  "license": "MIT",
+  "dependencies": {
+    "@huggingface/inference": "^4.13.9",
+    "@napi-rs/canvas": "^0.1.59",
+    "axios": "^1.7.9",
+    "bull": "^4.16.3",
+    "dotenv": "^16.4.5",
+    "sharp": "^0.33.5",
+    "telegraf": "^4.16.3"
+  },
+  "devDependencies": {
+    "@types/bull": "^4.10.0",
+    "@types/node": "^22.10.5",
+    "@typescript-eslint/eslint-plugin": "^8.18.2",
+    "@typescript-eslint/parser": "^8.18.2",
+    "eslint": "^9.18.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
