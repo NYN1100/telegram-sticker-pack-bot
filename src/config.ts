@@ -25,7 +25,13 @@ export const config = {
     "Yo'q",
     'Kechirasiz',
     'Uylayapmanda kemay qolyaptida',
-    'Qimirlaganingni otaman'
+    'Qimirlaganingni otaman',
+    "Gap yo'q",
+    'Nima gap?',
+    'Atak',
+    'Mazgi',
+    'Yorvordiz',
+    'Tinchmi?'
   ],
   
   // Image Generation Settings

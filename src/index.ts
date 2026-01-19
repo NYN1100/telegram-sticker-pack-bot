@@ -50,7 +50,7 @@ bot.command('start', async (ctx) => {
 
 Menga rasm yuboring va men sizga o'zbekcha tabriklar bilan shaxsiy stikerlar to'plamini yasab beraman! 🇺🇿
 
-Har bir to'plam quyidagi matnli 10 ta stikerni o'z ichiga oladi:
+Har bir to'plam quyidagi matnli 16 ta stikerni o'z ichiga oladi:
 • Assalomu alaykum
 • Vaaalaykum assalom
 • Rahmat
@@ -61,6 +61,12 @@ Har bir to'plam quyidagi matnli 10 ta stikerni o'z ichiga oladi:
 • Kechirasiz
 • Uylayapmanda kemay qolyaptida
 • Qimirlaganingni otaman
+• Gap yo'q
+• Nima gap?
+• Atak
+• Mazgi
+• Yorvordiz
+• Tinchmi?
 
 Boshlash uchun shunchaki rasm yuboring! 📸
   `.trim();
