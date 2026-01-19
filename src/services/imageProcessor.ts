@@ -93,42 +93,99 @@ export class ImageProcessor {
     ctx.drawImage(image, 0, 0, config.stickerSize, config.stickerSize);
     
     // Configure text
-    const fontSize = config.textOverlay.fontSize;
+    const maxFontSize = config.textOverlay.fontSize;
+    const padding = config.textOverlay.padding || 20;
+    const maxWidth = config.stickerSize - (padding * 2);
+    
+    // Dynamic font sizing and line wrapping loop
+    let fontSize = maxFontSize;
+    let lines: string[] = [];
+    
+    // Minimum readable font size
+    const minFontSize = 24; 
+    
+    while (fontSize >= minFontSize) {
+      ctx.font = `bold ${fontSize}px ${config.textOverlay.fontFamily}`;
+      lines = this.wrapText(ctx, text, maxWidth);
+      
+      // Calculate total height of the text block
+      const lineHeight = fontSize * 1.2;
+      const totalHeight = lines.length * lineHeight;
+      
+      // Check if it fits vertically (arbitrary limit: 40% of image height to avoid covering too much)
+      // and horizontally (should be guaranteed by wrapText, but good to be safe)
+      if (totalHeight <= config.stickerSize * 0.5) {
+        break; 
+      }
+      
+      // Reduce font size and try again
+      fontSize -= 4;
+    }
+    
     ctx.font = `bold ${fontSize}px ${config.textOverlay.fontFamily}`;
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     
-    // Calculate text position
-    const x = config.stickerSize / 2;
-    let y: number;
+    // Calculate vertical position
+    const lineHeight = fontSize * 1.2;
+    const totalBlockHeight = lines.length * lineHeight;
+    
+    let startY: number;
     
     switch (config.textOverlay.position) {
       case 'top':
-        y = fontSize + config.textOverlay.padding;
+        startY = padding + (lineHeight / 2);
         break;
       case 'center':
-        y = config.stickerSize / 2;
+        startY = (config.stickerSize - totalBlockHeight) / 2 + (lineHeight / 2);
         break;
       case 'bottom':
       default:
-        y = config.stickerSize - fontSize - config.textOverlay.padding;
+        // Position the bottom of the block near the bottom of the image
+        startY = config.stickerSize - padding - totalBlockHeight + (lineHeight / 2);
         break;
     }
     
-    // Draw text with stroke (outline)
+    // Draw each line
+    const x = config.stickerSize / 2;
+    
     ctx.strokeStyle = config.textOverlay.strokeColor;
     ctx.lineWidth = config.textOverlay.strokeWidth;
-    ctx.strokeText(text, x, y);
-    
-    // Draw text fill
     ctx.fillStyle = config.textOverlay.fontColor;
-    ctx.fillText(text, x, y);
+    
+    lines.forEach((line, index) => {
+      const y = startY + (index * lineHeight);
+      ctx.strokeText(line, x, y);
+      ctx.fillText(line, x, y);
+    });
     
     // Save to file
     const buffer = canvas.toBuffer('image/png');
     fs.writeFileSync(outputPath, buffer);
     
     return outputPath;
+  }
+
+  /**
+   * Helper to wrap text into lines based on max width
+   */
+  private wrapText(ctx: any, text: string, maxWidth: number): string[] {
+    const words = text.split(' ');
+    const lines: string[] = [];
+    let currentLine = words[0];
+
+    for (let i = 1; i < words.length; i++) {
+        const word = words[i];
+        const width = ctx.measureText(currentLine + " " + word).width;
+        if (width < maxWidth) {
+            currentLine += " " + word;
+        } else {
+            lines.push(currentLine);
+            currentLine = word;
+        }
+    }
+    lines.push(currentLine);
+    return lines;
   }
 
   /**
